@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #EFEFEF;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F5F5;
+    border-radius: 8px;
+    box-shadow: 1px 1px rgba(53, 53, 53, 0.1);
+    border: 1px solid rgba(53,53,53, 0.1);
+    padding: 1em;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+.input-container input {
+    padding: 3px 9px 3px 40px;
+    border-radius: 8px;
+    border: none;
+    min-height: 32px;
+    font-size: 1em;
+    width: 100%;
+    color: #353535;
+}
+
+.input-container input:focus-visible {
+    border: 2px solid #B5DCDC !important;
+    outline: none !important;
+}
+
+.input-container .icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2DBCB6;
+    font-size: 24px;
+}
+
+.primary-button {
+    background-color: #005156;
+    color: #FFF;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    min-height: 44px;
+}
