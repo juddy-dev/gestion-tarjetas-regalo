@@ -4,19 +4,27 @@ import Swal from 'sweetalert2';
 @Injectable({ providedIn: 'root' })
 export class AlertService {
 
-    error(message: string) {
+    error(message: string, seconds: number) {
         Swal.fire({
-            title: 'Oops!',
+            position: "top-end",
             text: message,
-            icon: 'error'
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            timer: seconds*1000,
+            timerProgressBar: true
           })
     }
 
-    success(message: string) {
+    success(message: string, seconds: number) {
         Swal.fire({
-            title: 'Yay!',
+            position: "top-end",
             text: message,
-            icon: 'success'
+            icon: 'success',
+            toast: true,
+            showConfirmButton: false,
+            timer: seconds*1000,
+            timerProgressBar: true
           })
 
     }

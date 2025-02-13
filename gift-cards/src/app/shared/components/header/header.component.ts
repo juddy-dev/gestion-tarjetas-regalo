@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { AlertService } from '../../../core/services/alerts.service';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [LoaderComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 
   title: string = '';
+  isLoading:boolean = false;
 
   constructor(
     private alertService: AlertService,
@@ -22,11 +24,12 @@ export class HeaderComponent {
 
     async logout() {
       try {
+        this.isLoading = true;
         await this.authService.signOut();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       }catch (error) {
-        this.alertService.error('Tuvimos un problema, vuelve a intentar más tarde.');
-
+        this.isLoading = false;
+        this.alertService.error('Tuvimos un problema, vuelve a intentar más tarde.', 3);
       }
     }
 

@@ -14,5 +14,8 @@ export class LoaderService {
     this.isLoading$.next(false);
   }
 
+  status() {
+    return this.isLoading$;
+  }
 
 }
