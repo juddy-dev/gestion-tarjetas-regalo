@@ -1,0 +1,19 @@
+.header {
+    height: min-content;
+    background-color: #005156;
+    padding: 9px 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu {
+    width: 80%;
+
+}
+
+.menu h1 {
+    color: #fff;
+    text-transform: capitalize;
+    margin: 0;
+}
