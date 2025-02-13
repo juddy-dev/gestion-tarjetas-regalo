@@ -11,16 +11,19 @@ import { CreateCardComponent } from '../../shared/modals/create-card/create-card
 import { CreateMultipleCardsComponent } from '../../shared/modals/create-multiple-cards/create-multiple-cards.component';
 import { CardDetailComponent } from '../../shared/modals/card-detail/card-detail.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SessionStorageService } from '../../core/services/session.storage';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let dataServiceSpy: jasmine.SpyObj<DataService>;
+  let sessionStorageServiceSpy: jasmine.SpyObj<SessionStorageService>;
   let isLoadingSubject: BehaviorSubject<boolean>;
   let loaderServiceMock: any;
 
   beforeEach(async () => {
     dataServiceSpy = jasmine.createSpyObj('DataService', ['getAll']);
+    sessionStorageServiceSpy = jasmine.createSpyObj('SessionStorageService', ['setItem', 'getItem']);
     isLoadingSubject = new BehaviorSubject<boolean>(false);
     loaderServiceMock = {
       status: () => isLoadingSubject,
@@ -40,6 +43,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(() => {
     dataServiceSpy.getAll.and.returnValue(of([]));
+    sessionStorageServiceSpy.getItem.and.returnValue(true);
 
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;

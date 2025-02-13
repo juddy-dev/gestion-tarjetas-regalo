@@ -9,6 +9,7 @@ import { CreateCardComponent } from '../../shared/modals/create-card/create-card
 import { CreateMultipleCardsComponent } from '../../shared/modals/create-multiple-cards/create-multiple-cards.component';
 import { LoaderService } from '../../core/services/loader.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SessionStorageService } from '../../core/services/session.storage';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,7 +36,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService,
+    private sessionStorageService: SessionStorageService) {
 
     this.loaderService.status().subscribe(status => {
       this.isLoading = status;
@@ -55,10 +57,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCards();
+    this.isGridView = this.sessionStorageService.getItem('isGridView') ?? false;
   }
   
   toggleCarView() {
     this.isGridView = !this.isGridView;
+    this.sessionStorageService.setItem('isGridView', this.isGridView);
   }
 
   loadCards() {
