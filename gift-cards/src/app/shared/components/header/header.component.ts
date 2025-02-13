@@ -23,6 +23,7 @@ export class HeaderComponent {
     async logout() {
       try {
         await this.authService.signOut();
+        this.router.navigate(['/login']);
       }catch (error) {
         this.alertService.error('Tuvimos un problema, vuelve a intentar más tarde.');
 

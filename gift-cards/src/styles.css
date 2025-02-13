@@ -68,6 +68,7 @@ body {
     padding: 9px 18px;
     min-height: 44px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .secondary-button {
@@ -78,21 +79,36 @@ body {
     padding: 9px 18px;
     min-height: 44px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .terciary-button {
     background-color: transparent;
-    color: #FFF;
-    border: none;
+    color: #005156;
+    border: 1px solid #005156;
     border-radius: 8px;
-    padding: 9px 18px;
-    min-height: 44px;
+    padding: 3px 9px;
     font-weight: 600;
+    min-height: 32px;
+    cursor: pointer;
 }
 
-
 .terciary-button:hover {
-    background-color: #FFF;
-    color:#005156;
+    background-color: rgba(181, 220, 220, 0.4);
+}
+
+.cuaternary-button {
+    background-color: transparent;
+    color: #353535;
+    border: none;
+    padding: 9px 18px;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.cuaternary-button:hover {
+    color:#2EAAAA;
 
 }

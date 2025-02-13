@@ -1,4 +1,73 @@
 <div class="container">
     <app-header></app-header>
-    
+    <div class="dashboard">
+        <div class="header-dashboard">
+            <h3>Tarjetas de regalo</h3>
+
+            <div class="filter-header-dashboard">
+
+                <div class="input-container">
+                    <input type="text" [formControl]="filterlControl" placeholder="Buscar por ID o por Número de tarjeta"/>
+                    <span class="material-symbols-outlined icon">search</span>
+                </div>
+
+                <button class="terciary-button" (click)="createCard()">Crear</button>
+
+                <button class="terciary-button min-w-128" (click)="createMultiplesCard()">Creación masiva</button>
+
+                <button class="icon-button" *ngIf="!isGridView" (click)="toggleCarView()">
+                    <span class="material-symbols-outlined">grid_view</span>
+                </button>
+                <button class="icon-button" *ngIf="isGridView" (click)="toggleCarView()">
+                    <span class="material-symbols-outlined">table</span>
+                </button>
+            </div>
+        </div>
+        
+        <div *ngIf="isGridView" class="grid-dashboard">
+            <div *ngFor="let giftCard of giftCardsFiltered" class="grid-card"  (click)="viewTransactions()">
+                <span class="grid-card-id">{{giftCard.id}}</span>
+
+                <div class="circle">
+                    <span class="material-symbols-outlined">redeem</span>
+                </div>
+
+                <span class="grid-card-value">{{giftCard.initialValue | currency: 'USD':'symbol':'1.0' }}</span>
+                <span class="grid-card-code">{{giftCard.codeCard}}</span>
+                
+            </div>
+
+        </div>                
+        <div *ngIf="!isGridView" class="list-dashboard">
+        
+            <table>
+                <thead>
+                  <tr>
+                    <th class="w-medium">ID</th>
+                    <th class="w-medium">NÚMERO DE TARJETA</th>
+                    <th class="w-medium">VALOR INICIAL</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let giftCard of giftCardsFiltered">
+                    <td>
+                        <div class="list-card-id">
+                            <span class="material-symbols-outlined">redeem</span> {{ giftCard.id }}
+                        </div>
+                    </td>
+                    <td>{{ giftCard.codeCard }}</td>
+                    <td>{{ giftCard.initialValue | currency: 'USD':'symbol':'1.0' }}</td>
+                    <td>
+                        <button class="cuaternary-button" (click)="viewTransactions()">
+                            Ver transacciones
+                        </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+        </div>                
+
+    </div>
 </div>
