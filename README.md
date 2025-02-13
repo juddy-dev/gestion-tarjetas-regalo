@@ -52,6 +52,7 @@ export const environment = {
 1️⃣ **Login con AWS Amplify (Cognito)**
 
 El login/validación de la sesión y obtención del token se maneja con `AWS Amplify` en `auth.service.ts`:
+
 (src/app/core/services/auth.service.ts)
 
 Ingreso:
@@ -89,6 +90,7 @@ async getTokenSession() {
 2️⃣ **Protección de Rutas con AuthGuard**
 
 Para restringir acceso a rutas, usamos `AuthGuard` en `auth.guard.ts`:
+
 (src/app/core/guards/auth.guard.ts)
 
 ```ts
@@ -112,6 +114,7 @@ export class AuthGuard implements CanActivate {
 3️⃣ **Interceptor para Incluir el idToken en las Peticiones**
 
 Para autenticar las llamadas a la API, usamos un interceptor `http.interceptor.ts`:
+
 (src/app/core/interceptors/http.interceptor.ts)
 
 ```ts
