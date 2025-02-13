@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
+    production: true,
     apiUrl: '', //endpoint del backend
     userPoolId: '',//id del grupo de usuario de Cognito
     userPoolClientId: '',//id del cliente de aplicación relacionado con el grupo de usuario de Cognito
