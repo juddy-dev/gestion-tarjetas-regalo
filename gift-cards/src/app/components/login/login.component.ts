@@ -20,7 +20,7 @@ export class LoginComponent {
     private alertService: AlertService,
     private authService: AuthService, 
     private router: Router) {}
-/*
+
   async login() {
     if (this.emailControl.valid && this.passwordControl.valid) {
       try {
@@ -29,7 +29,6 @@ export class LoginComponent {
         await this.authService.signIn(email, pwd);
         this.router.navigate(['/dashboard']);
       } catch (error) {
-        console.log(error);
         this.emailControl.reset();
         this.passwordControl.reset();
         this.alertService.error('Tu usuario y/o contraseña no coinciden.');
@@ -37,16 +36,6 @@ export class LoginComponent {
 
     }
     
-  }*/
-
-    async login() {
-        try {          
-          const tokenSession = await this.authService.getTokenSession();
-          console.log(tokenSession);
-        } catch (error) {
-          console.log(error);
-        }
-      
-    }
+  }
 
 }
