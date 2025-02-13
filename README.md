@@ -1,5 +1,9 @@
 # 🚀 Angular 19 + AWS Amplify + API Privada
 
+→→→ [INGRESA AQUÍ PARA TESTEAR](https://juddy-dev.github.io/gestion-tarjetas-regalo/#/)
+ - Correo: test@juddy.dev
+ - Contraseña: T3st*123
+
 Este proyecto es una aplicación Angular 19 que utiliza **AWS Amplify** para la autenticación y una **API privada** para la gestión de datos del backend. La aplicación está diseñada para ser segura y escalable, implementando buenas prácticas en autenticación, autorización y consumo de APIs.
 
 ## 📌 Características
@@ -162,7 +166,7 @@ ng serve
 
 Compilar para producción
 ```sh
-ng build --configuration=production
+npm run prod
 
 ```
 
