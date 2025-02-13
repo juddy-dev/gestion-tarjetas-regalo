@@ -23,4 +23,8 @@ export class DataService {
   create(item: Card): Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}/${this.path}`, item);
   }
+
+  createMultiple(items: Card[]): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/${this.path}/multiples`, items);
+  }
 }

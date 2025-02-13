@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../shared/modals/header/header.component';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../shared/services/data.service';
 import { Card } from '../../models/card.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CardDetailComponent } from '../../shared/modals/card-detail/card-detail.component';
 import { CreateCardComponent } from '../../shared/modals/create-card/create-card.component';
+import { CreateMultipleCardsComponent } from '../../shared/modals/create-multiple-cards/create-multiple-cards.component';
+import { LoaderService } from '../../core/services/loader.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [HeaderComponent, CommonModule, ReactiveFormsModule, CardDetailComponent, CreateCardComponent],
+  imports: [HeaderComponent, CommonModule, ReactiveFormsModule, 
+    CardDetailComponent, CreateCardComponent, CreateMultipleCardsComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
 
+  isLoading:boolean = false;
+  isEmpty: boolean = false;
   isGridView: boolean = false;
   giftCardsFiltered: Card[] = [];
   giftCards: Card[] = [];
@@ -22,8 +27,16 @@ export class DashboardComponent implements OnInit {
   cardSelected: Card = new Card();
   isOpenModalCardDetail = false;
   isOpenModalCreateCard = false;
+  isOpenModalCreateMultipleCards = false;
 
-  constructor(private dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private loaderService: LoaderService) {
+
+    this.loaderService.status().subscribe(status => {
+      this.isLoading = status.valueOf();
+    });
+
     this.filterlControl.valueChanges.subscribe(texto => {
       const valor = texto?.toLowerCase();
       if (valor?.length !== 0) {
@@ -31,6 +44,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.giftCardsFiltered = this.giftCards;
       }
+
+      this.isEmpty = this.giftCardsFiltered.length == 0;
     });
   }
 
@@ -47,6 +62,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.getAll().subscribe(items => {
       this.giftCards = items;
       this.giftCardsFiltered = items;
+      this.isEmpty = this.giftCardsFiltered.length == 0;
     });
 
   }
@@ -56,7 +72,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createMultiplesCard() {
-    
+    this.isOpenModalCreateMultipleCards = true;
   }
 
   viewTransactions(card: Card) {
@@ -70,6 +86,11 @@ export class DashboardComponent implements OnInit {
 
   closeModalCreateCard() {
     this.isOpenModalCreateCard = false;
+    this.loadCards();
+  }
+
+  closeModalCreateMulitpleCards() {
+    this.isOpenModalCreateMultipleCards = false;
     this.loadCards();
   }
 

@@ -23,8 +23,13 @@
                 </button>
             </div>
         </div>
+
+        <div *ngIf="isEmpty" class="no-data">
+          <span class="material-symbols-outlined">cloud_done</span>
+          <p>No hay tarjetas, en el menú superior puedes generar una o varias.</p>
+        </div>
         
-        <div *ngIf="isGridView" class="grid-dashboard">
+        <div *ngIf="isGridView && !isLoading && !isEmpty" class="grid-dashboard">
             <div *ngFor="let giftCard of giftCardsFiltered" class="grid-card"  (click)="viewTransactions(giftCard)">
                 <div class="circle">
                     <span class="material-symbols-outlined">redeem</span>
@@ -34,16 +39,27 @@
                 <span class="grid-card-code">{{giftCard.codeCard}}</span>
                 
             </div>
+        </div>    
+        
+        <div *ngIf="isGridView && isLoading" class="grid-dashboard">
+          <div class="grid-card-skeleton">
+          </div>
+          <div class="grid-card-skeleton">
+          </div>
+          <div class="grid-card-skeleton">
+          </div>
+        </div>
 
-        </div>                
-        <div *ngIf="!isGridView" class="list-dashboard">
+
+        <div *ngIf="!isGridView && !isLoading && !isEmpty" class="list-dashboard">
         
             <table>
                 <thead>
                   <tr>
                     <th class="w-medium">NÚMERO DE TARJETA</th>
+                    <th class="w-medium">FECHA GENERACIÓN</th>
                     <th class="w-medium">VALOR INICIAL</th>
-                    <th></th>
+                    <th class="w-medium"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -53,6 +69,7 @@
                             <span class="material-symbols-outlined">redeem</span> {{ giftCard.codeCard }}
                         </div>
                     </td>
+                    <td>{{ giftCard.initialDate | date: 'MM/dd/yyyy':'-0500' }}</td>
                     <td>{{ giftCard.initialValue | currency: 'USD':'symbol':'1.0' }}</td>
                     <td>
                         <button class="cuaternary-button" (click)="viewTransactions(giftCard)">
@@ -63,7 +80,28 @@
                 </tbody>
               </table>
               
-        </div>                
+        </div> 
+        
+        <div *ngIf="!isGridView && isLoading" class="list-dashboard">
+
+          <table>
+            <thead>
+              <tr>
+                <th class="w-medium">NÚMERO DE TARJETA</th>
+                <th class="w-medium">FECHA GENERACIÓN</th>
+                <th class="w-medium">VALOR INICIAL</th>
+                <th class="w-medium"></th>
+              </tr>
+            </thead>
+          </table>
+
+          <div class="list-row-skeleton"></div>
+
+          <div class="list-row-skeleton"></div>
+          
+          <div class="list-row-skeleton"></div>
+          
+        </div>               
 
     </div>
 </div>
@@ -78,3 +116,9 @@
   [isOpen]="isOpenModalCreateCard" 
   (closeModal)="closeModalCreateCard()">
 </app-create-card>
+
+
+<app-create-multiple-cards
+  [isOpen]="isOpenModalCreateMultipleCards" 
+  (closeModal)="closeModalCreateMulitpleCards()">
+</app-create-multiple-cards>

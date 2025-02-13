@@ -3,7 +3,7 @@
     <div class="modal modal-size-50">
   
       <div class="header">
-        <p>Nueva tarjeta</p>
+        <p>Creación masiva de tarjetas</p>
   
         <button (click)="close()" class="close-modal-button">
           <span class="material-symbols-outlined">close</span>
@@ -11,11 +11,13 @@
       </div>
   
       <div class="body">
+
+        <p>Todas las tarjetas se van a generar con el mismo valor inicial ($5.000.000 max).</p>
+        <p>Puedes generar hasta 100 tarjetas por lote.</p>
   
-        <p>El valor inicial puede ser hasta de $5.000.000</p>
         <div class="input-container">
-            <input type="text" [value]="codeCard" [disabled]="true"/>
-            <span class="material-symbols-outlined icon">numbers</span>
+            <input type="number" [formControl]="qunatityCardsControl" placeholder="Cantidad de tarjetas a generar"/>
+            <span class="material-symbols-outlined icon">variable_add</span>
         </div>
 
         <div class="input-container">
@@ -31,7 +33,6 @@
   
   </div>
     
-
 
 <app-loader
 [isOpen]="isLoading">

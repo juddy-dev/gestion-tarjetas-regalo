@@ -12,7 +12,6 @@
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    position: sticky;
     padding: 9px 32px;
 }
 
@@ -35,11 +34,11 @@
 .grid-dashboard {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     background-color: transparent;
     padding: 9px 32px;
     gap: 24px;
-
+    flex-wrap: wrap;
 }
 
 .list-dashboard {
@@ -77,7 +76,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    width: 30%;
+    width: 28%;
     border: none;
     background-color: #2EAAAA;
     gap: 9px;
@@ -88,6 +87,37 @@
 
 .grid-card:hover {
     box-shadow: 0 6px 9px 0 rgba(46, 170, 170, 0.35), 0 6px 18px 0 rgba(46, 170, 170, 0.35);
+}
+
+.grid-card-skeleton {
+    border-radius: 8px;
+    width: 28%;
+    border: none;
+    min-height: 200px;
+    background: linear-gradient(90deg, #b5dcdc8e 25%, #bedadade 50%, #B5DCDC8e 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+}
+
+@keyframes skeleton-loading {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+.list-row-skeleton {
+    border-radius: 8px;
+    width: 100%;
+    border: none;
+    height: 27px;
+    background: linear-gradient(90deg, #b5dcdc8e 25%, #bedadade 50%, #B5DCDC8e 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+    margin: 6px 0px;
+
 }
 
 .circle {
@@ -138,7 +168,7 @@
 }
 
 .w-medium {
-    width: 25%;
+    width: 23%;
 }
 
 .list-card-id {
@@ -152,4 +182,26 @@
 
 .min-w-128 {
     min-width: 128px;
+}
+
+.no-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.no-data p {
+    margin: 0;
+    font-size: 2em;
+    color: #B9B9B9;
+
+}
+
+.no-data span {
+    margin: 0;
+    font-size: 4em;
+    color: #B9B9B9;
+    
 }

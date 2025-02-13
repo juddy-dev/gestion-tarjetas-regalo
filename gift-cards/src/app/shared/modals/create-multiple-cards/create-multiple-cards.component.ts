@@ -10,48 +10,36 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 const TYPE_NEW = 'CARGA INICIAL';
 
 @Component({
-  selector: 'app-create-card',
+  selector: 'app-create-multiple-cards',
   imports: [CommonModule, ReactiveFormsModule, LoaderComponent],
-  templateUrl: './create-card.component.html',
-  styleUrl: './create-card.component.css'
+  templateUrl: './create-multiple-cards.component.html',
+  styleUrl: './create-multiple-cards.component.css'
 })
-export class CreateCardComponent {
+export class CreateMultipleCardsComponent {
 
   isLoading: boolean = false;
-  private _isOpen: boolean = false;
-
-  @Input()
-  set isOpen(value: boolean) {
-    this._isOpen = value;
-    if (value) {
-      this.idCard = this.generateId();
-      this.codeCard = this.generateNumericId();
-      this.initialValueControl.reset();
-    }
-  }
-
-  get isOpen(): boolean {
-    return this._isOpen;
-  }
+  @Input() isOpen = false;
 
   @Output() closeModal = new EventEmitter<void>();
 
-  idCard: string = '';
-  codeCard: string = '';
   initialValueControl = new FormControl(0, [Validators.required, Validators.min(1), Validators.max(5000000)]);
+  qunatityCardsControl = new FormControl(0, [Validators.required, Validators.min(1), Validators.max(100)]);
 
   constructor(
     private dataService: DataService,
     private alertService: AlertService) {
+
   }
 
   save() {
-    if (this.initialValueControl.valid) {
+    if (this.initialValueControl.valid && this.qunatityCardsControl.valid) {
       this.isLoading = true;
-      const newCard = {
-        id: this.idCard,
+      const qty = this.qunatityCardsControl.value ?? 0;
+      const newCards = Array.from({ length: qty }, (_, i) => ({
+        app: 'gift-cards',//esto es requerimiento de la api
         initialDate: new Date().toISOString(),
-        codeCard: this.codeCard,
+        id: this.generateId(),
+        codeCard: this.generateNumericId(),
         initialValue: this.initialValueControl.value,
         transactions: [
           {
@@ -60,13 +48,13 @@ export class CreateCardComponent {
             value: this.initialValueControl.value
           } as Transaction
         ]
-      } as Card;
+      } as Card));
 
-      this.dataService.create(newCard).subscribe(__ => {
+      this.dataService.createMultiple(newCards).subscribe(__ => {
         this.isLoading = false;
-        this.alertService.success('La tarjeta se ha generado.', 3);
+        this.alertService.success('Las tarjetas se han generado, tal vez tarden un poco en visualizarse.', 5);
         this.close();
-      }, ___ => {
+      }, __ => {
         this.isLoading = false;
         this.alertService.error('Tuvimos un problema, vuelve a intentarlo.', 3);
       });
@@ -75,6 +63,7 @@ export class CreateCardComponent {
 
   close() {
     this.initialValueControl.reset();
+    this.qunatityCardsControl.reset();
     this.closeModal.emit();
   }
 
