@@ -87,6 +87,7 @@ async getTokenSession() {
 ```
 
 2️⃣ **Protección de Rutas con AuthGuard**
+
 Para restringir acceso a rutas, usamos `AuthGuard` en `auth.guard.ts`:
 (src/app/core/guards/auth.guard.ts)
 
@@ -109,6 +110,7 @@ export class AuthGuard implements CanActivate {
 ```
 
 3️⃣ **Interceptor para Incluir el idToken en las Peticiones**
+
 Para autenticar las llamadas a la API, usamos un interceptor `http.interceptor.ts`:
 (src/app/core/interceptors/http.interceptor.ts)
 
@@ -134,7 +136,9 @@ export function httpInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) 
 
 ## 🏗 Arquitectura de la Aplicación
 📌 Frontend: Angular 19 + AWS Amplify
+
 📌 Autenticación: AWS Cognito
+
 📌 Backend(api privada)
 
 ## 📊 Flujo de Autenticación
