@@ -18,7 +18,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 - **Node.js** (versión 18 o superior) → [Descargar Node.js](https://nodejs.org/)  
 - **Angular CLI** → `npm install -g @angular/cli`   
-- Una cuenta en **AWS** y un grupo de usuarios configurado en **Cognito**  
+- Una cuenta en **AWS** y un grupo de usuarios configurado en **Cognito**  → [AWS Cognito](https://docs.aws.amazon.com/es_es/cognito/latest/developerguide/what-is-amazon-cognito.html)
 
 ---
 
@@ -54,7 +54,6 @@ El login se maneja con `AWS Amplify` en `auth.service.ts`:
 (src/app/core/services/auth.service.ts)
 
 ```ts
-
 import { signIn } from 'aws-amplify/auth'
 
 async signIn(email: string, password: string) {
@@ -63,9 +62,27 @@ async signIn(email: string, password: string) {
         password: password,
     })
 }
+```
+
+La validación del usuario autenticado:
+
+```ts
+async getCurrentUser() {
+    const { username, userId } = await getCurrentUser();
+    this.user$.next(new User(username, userId));
+}
 
 ```
 
+Y la obtención del token:
+
+```ts
+async getTokenSession() {
+    const { tokens } = await fetchAuthSession();
+    return tokens?.idToken?.toString();
+}
+
+```
 
 2️⃣ **Protección de Rutas con AuthGuard**
 Para restringir acceso a rutas, usamos `AuthGuard` en `auth.guard.ts`:
