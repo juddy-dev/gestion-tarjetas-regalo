@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     private loaderService: LoaderService) {
 
     this.loaderService.status().subscribe(status => {
-      this.isLoading = status.valueOf();
+      this.isLoading = status;
     });
 
     this.filterlControl.valueChanges.subscribe(texto => {
@@ -53,7 +53,6 @@ export class DashboardComponent implements OnInit {
     this.loadCards();
   }
   
-
   toggleCarView() {
     this.isGridView = !this.isGridView;
   }

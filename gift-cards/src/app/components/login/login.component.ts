@@ -32,7 +32,8 @@ export class LoginComponent {
         const pwd = this.passwordControl.value ?? '';
         await this.authService.signIn(email, pwd);
         this.router.navigate(['/dashboard']);
-      } catch (error) {        
+      } catch (error) {   
+        console.log(error);     
         this.isLoading = false;
         this.emailControl.reset();
         this.passwordControl.reset();

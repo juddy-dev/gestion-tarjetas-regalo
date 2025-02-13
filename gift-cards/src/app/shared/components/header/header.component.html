@@ -4,7 +4,11 @@
         <h1>{{title}}</h1>
     </div>
 
-    <button class="secondary-button" (click)="logout()">Cerrar sesión</button>
+    <button *ngIf="isTransactions" class="primary-button" (click)="goToDahsboard()">Panel de tarjetas</button>
+    <button *ngIf="isDashboard" class="primary-button" (click)="goToTransactions()">Transacciones por tarjeta</button>
+    <button class="primary-button" (click)="logout()">
+      <span class="material-symbols-outlined">logout</span>
+    </button>
 </div>
 
 

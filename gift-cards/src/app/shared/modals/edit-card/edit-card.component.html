@@ -1,0 +1,40 @@
+<div class="modal-overlay" *ngIf="isOpen">
+    
+    <div class="modal modal-size-50">
+  
+      <div class="header">
+        <p>Nueva movimiento</p>
+        
+  
+        <button (click)="close()" class="close-modal-button">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+  
+      <div class="body">
+
+        <div class="title">
+          <p>tarjeta #</p>
+          <p class="card-number">{{card.codeCard}}</p>
+        </div>
+        <div class="input-container">
+            <input type="number" [formControl]="initialValueControl" placeholder="Valor inicial"/>
+            <span class="material-symbols-outlined icon">paid</span>
+        </div>
+
+        <div class="buttons">
+          <button class="terciary-button" (click)="addBalanceTransaction()" [disabled]="!initialValueControl.valid">Agregar como recarga</button>
+          <button class="terciary-button" (click)="addPayTransaction()" [disabled]="!initialValueControl.valid">Agregar como compra</button>  
+        </div>
+
+      </div>
+  
+    </div>
+  
+  </div>
+    
+
+
+<app-loader
+[isOpen]="isLoading">
+</app-loader>
