@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { CreateCardComponent } from '../../shared/modals/create-card/create-card.component';
 import { CreateMultipleCardsComponent } from '../../shared/modals/create-multiple-cards/create-multiple-cards.component';
 import { CardDetailComponent } from '../../shared/modals/card-detail/card-detail.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -29,7 +30,7 @@ describe('DashboardComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [DashboardComponent, HeaderComponent, CommonModule, ReactiveFormsModule, 
-          CardDetailComponent, CreateCardComponent, CreateMultipleCardsComponent],
+          CardDetailComponent, CreateCardComponent, CreateMultipleCardsComponent, NgxPaginationModule],
       providers: [
         { provide: DataService, useValue: dataServiceSpy },
         { provide: LoaderService, useValue: loaderServiceMock }

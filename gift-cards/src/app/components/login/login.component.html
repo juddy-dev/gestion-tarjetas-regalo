@@ -5,11 +5,13 @@
         </div>
         <div class="form">
             <div class="input-container">
-                <input type="email" [formControl]="emailControl" placeholder="Correo electrónico"/>
+                <input type="email" [formControl]="emailControl" placeholder="Correo electrónico"
+                [ngClass] ="{'required': !emailControl.valid && submitted}" />
                 <span class="material-symbols-outlined icon">alternate_email</span>
             </div>
             <div class="input-container">
-                <input type="password" [formControl]="passwordControl" placeholder="Contraseña"/>
+                <input type="password" [formControl]="passwordControl" placeholder="Contraseña"
+                [ngClass] ="{'required': !passwordControl.valid && submitted}"/>
                 <span class="material-symbols-outlined icon">password</span>
             </div>               
             <button class="primary-button" (click)="login()">Ingresar</button>

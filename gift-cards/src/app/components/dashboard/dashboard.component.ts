@@ -8,11 +8,13 @@ import { CardDetailComponent } from '../../shared/modals/card-detail/card-detail
 import { CreateCardComponent } from '../../shared/modals/create-card/create-card.component';
 import { CreateMultipleCardsComponent } from '../../shared/modals/create-multiple-cards/create-multiple-cards.component';
 import { LoaderService } from '../../core/services/loader.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-dashboard',
   imports: [HeaderComponent, CommonModule, ReactiveFormsModule, 
-    CardDetailComponent, CreateCardComponent, CreateMultipleCardsComponent],
+    CardDetailComponent, CreateCardComponent, CreateMultipleCardsComponent,
+    NgxPaginationModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -28,6 +30,8 @@ export class DashboardComponent implements OnInit {
   isOpenModalCardDetail = false;
   isOpenModalCreateCard = false;
   isOpenModalCreateMultipleCards = false;
+  page = 1;
+  cardsPerPage = 10;
 
   constructor(
     private dataService: DataService,

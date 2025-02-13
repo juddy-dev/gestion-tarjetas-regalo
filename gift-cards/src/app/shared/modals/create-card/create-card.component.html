@@ -19,7 +19,9 @@
         </div>
 
         <div class="input-container">
-            <input type="number" [formControl]="initialValueControl" placeholder="Valor inicial"/>
+            <input type="number" [formControl]="initialValueControl" placeholder="Valor inicial"
+              [ngClass] ="{'required': !initialValueControl.valid && submitted}"
+            />
             <span class="material-symbols-outlined icon">paid</span>
         </div>
 

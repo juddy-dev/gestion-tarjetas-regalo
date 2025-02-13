@@ -51,6 +51,11 @@ body {
     outline: none !important;
 }
 
+.required {
+    border: 2px solid #f2a6a6 !important;
+    outline: none !important;
+}
+
 .input-container .icon {
     position: absolute;
     left: 10px;
@@ -149,9 +154,6 @@ body {
     min-width: 50%;
 }
 
-
-
-
 table {
     border: 1px solid #2EAAAA;
     border-spacing: 0px;
@@ -178,7 +180,6 @@ td {
 
 tr {
     border-bottom: 1px solid #2EAAAA;
-    /* Línea separadora entre filas */
 }
 
 td span {
@@ -191,4 +192,27 @@ input[type=number]::-webkit-outer-spin-button {
     -moz-appearance: none;
     appearance: none;
     margin: 0; 
+}
+
+.pagination {
+    align-self: flex-end;
+}
+
+.ngx-pagination a {
+    color: #353535 !important;
+}
+
+.ngx-pagination .pagination-previous a:before,
+.ngx-pagination .pagination-previous.disabled:before {
+    content: none !important;
+}
+
+.ngx-pagination .pagination-next a:after,
+.ngx-pagination .pagination-next.disabled:after {
+    content: none !important;
+}
+
+.ngx-pagination .current {
+    background: #005156 !important;
+    border-radius: 8px !important;
 }
