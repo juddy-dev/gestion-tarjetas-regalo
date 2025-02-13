@@ -50,9 +50,11 @@ export const environment = {
 ## 🔑 Uso de AWS Amplify (Autenticación y API)
 
 1️⃣ **Login con AWS Amplify (Cognito)**
-El login se maneja con `AWS Amplify` en `auth.service.ts`:
+
+El login/validación de la sesión y obtención del token se maneja con `AWS Amplify` en `auth.service.ts`:
 (src/app/core/services/auth.service.ts)
 
+Ingreso:
 ```ts
 import { signIn } from 'aws-amplify/auth'
 
@@ -64,7 +66,7 @@ async signIn(email: string, password: string) {
 }
 ```
 
-La validación del usuario autenticado:
+La validación de la sesión:
 
 ```ts
 async getCurrentUser() {
@@ -74,7 +76,7 @@ async getCurrentUser() {
 
 ```
 
-Y la obtención del token:
+Obtención del token:
 
 ```ts
 async getTokenSession() {
