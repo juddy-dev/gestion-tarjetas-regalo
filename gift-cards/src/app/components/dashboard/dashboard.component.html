@@ -25,9 +25,7 @@
         </div>
         
         <div *ngIf="isGridView" class="grid-dashboard">
-            <div *ngFor="let giftCard of giftCardsFiltered" class="grid-card"  (click)="viewTransactions()">
-                <span class="grid-card-id">{{giftCard.id}}</span>
-
+            <div *ngFor="let giftCard of giftCardsFiltered" class="grid-card"  (click)="viewTransactions(giftCard)">
                 <div class="circle">
                     <span class="material-symbols-outlined">redeem</span>
                 </div>
@@ -43,7 +41,6 @@
             <table>
                 <thead>
                   <tr>
-                    <th class="w-medium">ID</th>
                     <th class="w-medium">NÚMERO DE TARJETA</th>
                     <th class="w-medium">VALOR INICIAL</th>
                     <th></th>
@@ -53,13 +50,12 @@
                   <tr *ngFor="let giftCard of giftCardsFiltered">
                     <td>
                         <div class="list-card-id">
-                            <span class="material-symbols-outlined">redeem</span> {{ giftCard.id }}
+                            <span class="material-symbols-outlined">redeem</span> {{ giftCard.codeCard }}
                         </div>
                     </td>
-                    <td>{{ giftCard.codeCard }}</td>
                     <td>{{ giftCard.initialValue | currency: 'USD':'symbol':'1.0' }}</td>
                     <td>
-                        <button class="cuaternary-button" (click)="viewTransactions()">
+                        <button class="cuaternary-button" (click)="viewTransactions(giftCard)">
                             Ver transacciones
                         </button>
                     </td>
@@ -71,3 +67,14 @@
 
     </div>
 </div>
+
+<app-card-detail
+  [isOpen]="isOpenModalCardDetail" 
+  [card]="cardSelected"
+  (closeModal)="closeModalCardDetail()">
+</app-card-detail>
+
+<app-create-card
+  [isOpen]="isOpenModalCreateCard" 
+  (closeModal)="closeModalCreateCard()">
+</app-create-card>

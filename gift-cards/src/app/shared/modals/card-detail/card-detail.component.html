@@ -1,0 +1,45 @@
+<div class="modal-overlay" *ngIf="isOpen">
+    
+  <div class="modal modal-size-50">
+
+    <div class="header">
+      <div class="title">
+        <p>tarjeta #</p>
+        <p class="card-number">{{card.codeCard}}</p>
+      </div>
+
+      <button (click)="close()" class="close-modal-button">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="body">
+      <h3 *ngIf="!hasTransactions()">No tiene movimientos</h3>
+      <h3 *ngIf="hasTransactions()">Movimientos</h3>
+      <table *ngIf="hasTransactions()">
+          <thead>
+            <tr>
+              <th class="w-medium">Fecha</th>
+              <th class="w-medium">Tipo</th>
+              <th class="w-medium">Monto</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of card.transactions">
+              <td>{{ transaction.date | date: 'medium':'-0500' }}</td>
+              <td>{{ transaction.type }}</td>
+              <td>{{ transaction.value | currency: 'USD':'symbol':'1.0' }}</td>
+            </tr>
+          </tbody>
+      </table>
+
+    </div>
+
+
+
+
+  </div>
+
+</div>
+  

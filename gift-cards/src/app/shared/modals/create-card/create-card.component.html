@@ -1,0 +1,32 @@
+<div class="modal-overlay" *ngIf="isOpen">
+    
+    <div class="modal modal-size-50">
+  
+      <div class="header">
+        <p>Nueva tarjeta</p>
+  
+        <button (click)="close()" class="close-modal-button">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+  
+      <div class="body">
+  
+        <div class="input-container">
+            <input type="text" [value]="codeCard" [disabled]="true"/>
+            <span class="material-symbols-outlined icon">numbers</span>
+        </div>
+
+        <div class="input-container">
+            <input type="number" [formControl]="initialValueControl" placeholder="Valor inicial"/>
+            <span class="material-symbols-outlined icon">paid</span>
+        </div>
+
+        <button class="primary-button" (click)="save()" [disabled]="!initialValueControl.valid">Generar</button>
+
+      </div>
+  
+    </div>
+  
+  </div>
+    
