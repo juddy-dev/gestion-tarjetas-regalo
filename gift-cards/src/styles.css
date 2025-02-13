@@ -112,3 +112,72 @@ body {
     color:#2EAAAA;
 
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.modal {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+  
+.close-modal-button {
+    background: transparent;
+    color: #005156;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.modal-size-50 {
+    min-width: 50%;
+  }
+  
+
+
+
+table {
+    border: 1px solid #2EAAAA;
+    border-spacing: 0px;
+    background-color: #FFF;
+    border-collapse: collapse;
+    border-radius: 8px;
+}
+
+th {
+    background-color: #2EAAAA;
+    text-align: start;
+    padding: 3px 9px;
+    color: #FFF;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+}
+
+td {
+   vertical-align: middle !important;
+   color: #353535;
+   padding: 3px 9px;
+}
+
+tr {
+    border-bottom: 1px solid #2EAAAA; /* Línea separadora entre filas */
+}
+
+td span {
+    color: #2EAAAA;
+}

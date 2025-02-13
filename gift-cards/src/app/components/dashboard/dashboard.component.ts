@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
+import { HeaderComponent } from '../../shared/modals/header/header.component';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../shared/services/data.service';
 import { Card } from '../../models/card.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CardDetailComponent } from '../../shared/modals/card-detail/card-detail.component';
+import { CreateCardComponent } from '../../shared/modals/create-card/create-card.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [HeaderComponent, CommonModule, ReactiveFormsModule],
+  imports: [HeaderComponent, CommonModule, ReactiveFormsModule, CardDetailComponent, CreateCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -17,7 +19,9 @@ export class DashboardComponent implements OnInit {
   giftCardsFiltered: Card[] = [];
   giftCards: Card[] = [];
   filterlControl = new FormControl('');
-
+  cardSelected: Card = new Card();
+  isOpenModalCardDetail = false;
+  isOpenModalCreateCard = false;
 
   constructor(private dataService: DataService) {
     this.filterlControl.valueChanges.subscribe(texto => {
@@ -48,15 +52,25 @@ export class DashboardComponent implements OnInit {
   }
 
   createCard() {
-
+    this.isOpenModalCreateCard = true;
   }
 
   createMultiplesCard() {
     
   }
 
-  viewTransactions() {
+  viewTransactions(card: Card) {
+    this.cardSelected = card;
+    this.isOpenModalCardDetail = true;
+  }
 
+  closeModalCardDetail() {
+    this.isOpenModalCardDetail = false;
+  }
+
+  closeModalCreateCard() {
+    this.isOpenModalCreateCard = false;
+    this.loadCards();
   }
 
 }
