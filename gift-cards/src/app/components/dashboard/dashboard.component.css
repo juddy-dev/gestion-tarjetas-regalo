@@ -34,7 +34,7 @@
 .grid-dashboard {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: transparent;
     padding: 9px 32px;
     gap: 24px;

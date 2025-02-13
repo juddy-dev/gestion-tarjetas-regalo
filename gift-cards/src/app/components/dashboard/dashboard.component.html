@@ -61,7 +61,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let giftCard of giftCardsFiltered">
+                  <tr *ngFor="let giftCard of giftCardsFiltered | paginate: { itemsPerPage: cardsPerPage, currentPage: page }">
                     <td>
                         <div class="list-card-id">
                             <span class="material-symbols-outlined">redeem</span> {{ giftCard.codeCard }}
@@ -78,6 +78,8 @@
                 </tbody>
               </table>
               
+              <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+
         </div> 
         
         <div *ngIf="!isGridView && isLoading" class="list-dashboard">

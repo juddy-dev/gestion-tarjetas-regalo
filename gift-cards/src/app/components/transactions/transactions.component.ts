@@ -8,12 +8,14 @@ import { Transaction } from '../../models/transaction.model';
 import { AlertService } from '../../core/services/alerts.service';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { EditCardComponent } from '../../shared/modals/edit-card/edit-card.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
 @Component({
   selector: 'app-transactions',
-  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, LoaderComponent, EditCardComponent],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, 
+    LoaderComponent, EditCardComponent, NgxPaginationModule],
   templateUrl: './transactions.component.html',
   styleUrl: './transactions.component.css'
 })
@@ -25,6 +27,8 @@ export class TransactionsComponent implements OnInit{
   filterlControl = new FormControl('');
   isOpenModalEditCard = false;
   cardSelected: Card = new Card();
+  page = 1;
+  cardsPerPage = 10;
 
   constructor(private dataService: DataService, private alertService: AlertService){
 

@@ -19,6 +19,7 @@ export class CreateCardComponent {
 
   isLoading: boolean = false;
   private _isOpen: boolean = false;
+  submitted: boolean = false;
 
   @Input()
   set isOpen(value: boolean) {
@@ -47,6 +48,7 @@ export class CreateCardComponent {
   }
 
   save() {
+    this.submitted = true;
     if (this.initialValueControl.valid) {
       this.isLoading = true;
       const newCard = {
@@ -79,6 +81,7 @@ export class CreateCardComponent {
   }
 
   close() {
+    this.submitted = false;
     this.initialValueControl.reset();
     this.closeModal.emit();
   }

@@ -23,7 +23,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let giftCard of giftCardsFiltered">
+                  <tr *ngFor="let giftCard of giftCardsFiltered | paginate: { itemsPerPage: cardsPerPage, currentPage: page }">
                     <td>
                         <div class="list-card-id">
                             <span class="material-symbols-outlined">redeem</span> {{ giftCard.codeCard }}
@@ -40,6 +40,7 @@
                   </tr>
                 </tbody>
               </table>
+              <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
               
         </div> 
                    

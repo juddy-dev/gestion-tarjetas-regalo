@@ -25,6 +25,8 @@ export class CreateMultipleCardsComponent {
   initialValueControl = new FormControl(0, [Validators.required, Validators.min(1), Validators.max(5000000)]);
   qunatityCardsControl = new FormControl(0, [Validators.required, Validators.min(1), Validators.max(100)]);
 
+  submitted: boolean = false;
+
   constructor(
     private dataService: DataService,
     private alertService: AlertService) {
@@ -34,6 +36,7 @@ export class CreateMultipleCardsComponent {
   }
 
   save() {
+    this.submitted = true;
     if (this.initialValueControl.valid && this.qunatityCardsControl.valid) {
       this.isLoading = true;
       const qty = this.qunatityCardsControl.value ?? 0;
@@ -68,6 +71,7 @@ export class CreateMultipleCardsComponent {
   }
 
   close() {
+    this.submitted = false;
     this.initialValueControl.reset();
     this.qunatityCardsControl.reset();
     this.closeModal.emit();

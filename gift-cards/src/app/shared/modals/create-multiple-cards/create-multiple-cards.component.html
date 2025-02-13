@@ -16,12 +16,14 @@
         <p>Puedes generar hasta 100 tarjetas por lote.</p>
   
         <div class="input-container">
-            <input type="number" [formControl]="qunatityCardsControl" placeholder="Cantidad de tarjetas a generar"/>
+            <input type="number" [formControl]="qunatityCardsControl" placeholder="Cantidad de tarjetas a generar"
+            [ngClass] ="{'required': !qunatityCardsControl.valid}"/>
             <span class="material-symbols-outlined icon">variable_add</span>
         </div>
 
         <div class="input-container">
-            <input type="number" [formControl]="initialValueControl" placeholder="Valor inicial"/>
+            <input type="number" [formControl]="initialValueControl" placeholder="Valor inicial"
+            [ngClass] ="{'required': !initialValueControl.valid && submitted}"/>
             <span class="material-symbols-outlined icon">paid</span>
         </div>
 

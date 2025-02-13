@@ -6,6 +6,7 @@ import { of, throwError } from 'rxjs';
 import { Card } from '../../models/card.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 describe('TransactionsComponent', () => {
   let component: TransactionsComponent;
@@ -18,7 +19,7 @@ describe('TransactionsComponent', () => {
     mockAlertService = jasmine.createSpyObj('AlertService', ['success', 'error']);
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, TransactionsComponent, LoaderComponent],
+      imports: [ReactiveFormsModule, TransactionsComponent, LoaderComponent, NgxPaginationModule],
       providers: [
         { provide: DataService, useValue: mockDataService },
         { provide: AlertService, useValue: mockAlertService }

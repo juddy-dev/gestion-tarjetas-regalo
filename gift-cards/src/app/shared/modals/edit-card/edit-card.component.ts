@@ -21,6 +21,7 @@ export class EditCardComponent {
 
   isLoading: boolean = false;
   private _isOpen: boolean = false;
+  submitted: boolean = false;
 
   @Input()
   set isOpen(value: boolean) {
@@ -49,6 +50,7 @@ export class EditCardComponent {
 
 
   addPayTransaction() {
+    this.submitted = true;
     if (this.initialValueControl.valid) {
 
       this.isLoading = true;
@@ -76,6 +78,7 @@ export class EditCardComponent {
   }
 
   addBalanceTransaction() {
+    this.submitted = true;
     if (this.initialValueControl.valid) {
       this.isLoading = true;
       this.card.transactions.push({
@@ -102,6 +105,7 @@ export class EditCardComponent {
   }
 
   close() {
+    this.submitted = false;
     this.initialValueControl.reset();
     this.closeModal.emit();
   }
