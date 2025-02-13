@@ -28,6 +28,12 @@
   color: #B9B9B9;
 }
 
+.title p {
+  margin: 0;
+  color: #747474;
+
+}
+
 .buttons {
   display: flex;
   flex-direction: row;

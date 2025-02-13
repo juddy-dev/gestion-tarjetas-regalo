@@ -40,7 +40,7 @@ export class EditCardComponent {
 
   idCard: string = '';
   codeCard: string = '';
-  initialValueControl = new FormControl(0, [Validators.required, Validators.min(1), Validators.max(5000000)]);
+  initialValueControl = new FormControl(0, [Validators.required, Validators.min(1), Validators.max(1000000)]);
 
   constructor(
     private dataService: DataService,

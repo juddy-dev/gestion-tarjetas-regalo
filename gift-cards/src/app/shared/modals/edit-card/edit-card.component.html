@@ -17,15 +17,17 @@
           <p>tarjeta #</p>
           <p class="card-number">{{card.codeCard}}</p>
         </div>
+        <p>Valor del movimiento hasta por $1.000.000.</p>
+        
         <div class="input-container">
-            <input type="number" [formControl]="initialValueControl" placeholder="Valor inicial"
+            <input type="number" [formControl]="initialValueControl" placeholder="Valor del movimiento"
             [ngClass] ="{'required': !initialValueControl.valid && submitted}"/>
             <span class="material-symbols-outlined icon">paid</span>
         </div>
 
         <div class="buttons">
-          <button class="terciary-button" (click)="addBalanceTransaction()" [disabled]="!initialValueControl.valid">Agregar como recarga</button>
-          <button class="terciary-button" (click)="addPayTransaction()" [disabled]="!initialValueControl.valid">Agregar como compra</button>  
+          <button class="terciary-button" (click)="addBalanceTransaction()">Agregar como recarga</button>
+          <button class="terciary-button" (click)="addPayTransaction()">Agregar como compra</button>  
         </div>
 
       </div>

@@ -17,7 +17,7 @@
   
         <div class="input-container">
             <input type="number" [formControl]="qunatityCardsControl" placeholder="Cantidad de tarjetas a generar"
-            [ngClass] ="{'required': !qunatityCardsControl.valid}"/>
+            [ngClass] ="{'required': !qunatityCardsControl.valid && submitted}"/>
             <span class="material-symbols-outlined icon">variable_add</span>
         </div>
 
@@ -27,7 +27,7 @@
             <span class="material-symbols-outlined icon">paid</span>
         </div>
 
-        <button class="primary-button" (click)="save()" [disabled]="!initialValueControl.valid">Generar</button>
+        <button class="primary-button" (click)="save()">Generar</button>
 
       </div>
   
