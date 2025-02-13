@@ -1,0 +1,59 @@
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header-dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 9px 32px;
+}
+
+.header-dashboard h3 {
+    color: #353535;
+}
+
+.filter-header-dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFF;
+    width: 100%;
+    border-radius: 8px;
+    padding: 9px 18px;
+    gap: 18px;
+}
+
+
+.list-dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: transparent;
+    padding: 9px 32px;
+
+}
+
+.w-medium {
+    width: 25%;
+}
+.list-card-id {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 3px;
+    
+}
+
+p {
+    margin: 0;
+    color: #929292;
+    text-align: end;
+}

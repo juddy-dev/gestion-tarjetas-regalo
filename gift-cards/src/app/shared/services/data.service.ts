@@ -20,7 +20,7 @@ export class DataService {
     return this.http.get<Card>(`${environment.apiUrl}/${this.path}/${id}`);
   }
 
-  create(item: Card): Observable<any> {
+  save(item: Card): Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}/${this.path}`, item);
   }
 

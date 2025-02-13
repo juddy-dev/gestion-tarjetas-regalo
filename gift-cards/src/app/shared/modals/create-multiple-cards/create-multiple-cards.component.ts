@@ -28,6 +28,8 @@ export class CreateMultipleCardsComponent {
   constructor(
     private dataService: DataService,
     private alertService: AlertService) {
+      this.initialValueControl.reset();
+      this.qunatityCardsControl.reset();
 
   }
 
@@ -50,13 +52,17 @@ export class CreateMultipleCardsComponent {
         ]
       } as Card));
 
-      this.dataService.createMultiple(newCards).subscribe(__ => {
-        this.isLoading = false;
-        this.alertService.success('Las tarjetas se han generado, tal vez tarden un poco en visualizarse.', 5);
-        this.close();
-      }, __ => {
-        this.isLoading = false;
-        this.alertService.error('Tuvimos un problema, vuelve a intentarlo.', 3);
+      this.dataService.createMultiple(newCards).subscribe({
+        next: () =>{
+          this.alertService.success('Las tarjetas se han generado, tal vez tarden un poco en visualizarse.', 5);
+          this.close();
+        },
+        error: () => {
+          this.alertService.error('Tuvimos un problema, vuelve a intentarlo.', 3);
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
       });
     }
   }

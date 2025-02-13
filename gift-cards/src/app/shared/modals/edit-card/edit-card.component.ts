@@ -7,15 +7,17 @@ import { AlertService } from '../../../core/services/alerts.service';
 import { Transaction } from '../../../models/transaction.model';
 import { LoaderComponent } from '../../components/loader/loader.component';
 
-const TYPE_NEW = 'CARGA INICIAL';
+
+const TYPE_ADD_PAY = 'COMPRA';
+const TYPE_ADD_BALANCE = 'RECARGA';
 
 @Component({
-  selector: 'app-create-card',
+  selector: 'app-edit-card',
   imports: [CommonModule, ReactiveFormsModule, LoaderComponent],
-  templateUrl: './create-card.component.html',
-  styleUrl: './create-card.component.css'
+  templateUrl: './edit-card.component.html',
+  styleUrl: './edit-card.component.css'
 })
-export class CreateCardComponent {
+export class EditCardComponent {
 
   isLoading: boolean = false;
   private _isOpen: boolean = false;
@@ -24,8 +26,6 @@ export class CreateCardComponent {
   set isOpen(value: boolean) {
     this._isOpen = value;
     if (value) {
-      this.idCard = this.generateId();
-      this.codeCard = this.generateNumericId();
       this.initialValueControl.reset();
     }
   }
@@ -33,6 +33,7 @@ export class CreateCardComponent {
   get isOpen(): boolean {
     return this._isOpen;
   }
+  @Input() card: Card = new Card();
 
   @Output() closeModal = new EventEmitter<void>();
 
@@ -46,53 +47,63 @@ export class CreateCardComponent {
       this.initialValueControl.reset();
   }
 
-  save() {
-    if (this.initialValueControl.valid) {
-      this.isLoading = true;
-      const newCard = {
-        id: this.idCard,
-        initialDate: new Date().toISOString(),
-        codeCard: this.codeCard,
-        initialValue: this.initialValueControl.value,
-        transactions: [
-          {
-            date: new Date().toISOString(),
-            type: TYPE_NEW,
-            value: this.initialValueControl.value
-          } as Transaction
-        ]
-      } as Card;
 
-      this.dataService.save(newCard).subscribe({
-        next: () =>{
-          this.alertService.success('La tarjeta se ha generado.', 3);
-          this.close();
+  addPayTransaction() {
+    if (this.initialValueControl.valid) {
+
+      this.isLoading = true;
+      this.card.transactions.push({
+        date: new Date().toISOString(),
+        value: this.initialValueControl.value,
+        type: TYPE_ADD_PAY
+      } as Transaction);
+  
+      this.dataService.save(this.card).subscribe({
+        next: () => {
+          this.alertService.success('Se ha agregado el movimiento.', 3);
         },
         error: () => {
           this.alertService.error('Tuvimos un problema, vuelve a intentarlo.', 3);
         },
         complete: () => {
           this.isLoading = false;
+          this.close();
+        }
+      });
+
+    }
+
+  }
+
+  addBalanceTransaction() {
+    if (this.initialValueControl.valid) {
+      this.isLoading = true;
+      this.card.transactions.push({
+        date: new Date().toISOString(),
+        value: this.initialValueControl.value,
+        type: TYPE_ADD_BALANCE
+      } as Transaction);
+
+
+      this.dataService.save(this.card).subscribe({
+        next: () => {
+          this.alertService.success('Se ha agregado el movimiento', 3);
+        }, 
+        error: () => {
+          this.alertService.error('Tuvimos un problema, vuelve a intentarlo.', 3);
+        },
+        complete: () => {
+          this.isLoading = false;
+          this.close();
         }
       });
     }
+
   }
 
   close() {
     this.initialValueControl.reset();
     this.closeModal.emit();
   }
-
-  generateId(): string {
-    return Math.random().toString(36).substring(2, 10) +
-           Date.now().toString(36).substring(4, 12);
-  }
-
-  generateNumericId(): string {
-    const timestamp = Date.now().toString().slice(-8);
-    const randomPart = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
-    return timestamp + randomPart;
-  }
-  
 
 }
