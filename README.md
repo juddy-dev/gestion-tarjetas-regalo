@@ -4,7 +4,7 @@
  - Correo: test@juddy.dev
  - Contraseña: T3st*123
 
-Este proyecto es una aplicación Angular 19 que utiliza **AWS Amplify** para la autenticación y una **API privada** para la gestión de datos del backend. La aplicación está diseñada para ser segura y escalable, implementando buenas prácticas en autenticación, autorización y consumo de APIs.
+Este proyecto es una aplicación Angular 19 que utiliza **AWS Amplify** para la autenticación y Api Gateway, Lambdas, Dynamo para un backend **Serveless**. La aplicación está diseñada para ser segura y escalable, implementando buenas prácticas en autenticación, autorización y consumo de APIs.
 
 ## 📌 Características
 
