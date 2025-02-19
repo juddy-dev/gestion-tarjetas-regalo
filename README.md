@@ -11,7 +11,8 @@ Este proyecto es una aplicación Angular 19 que utiliza **AWS Amplify** para la 
 ✅ **Desarrollado con Angular 19**  
 ✅ **Autenticación con AWS Amplify (Cognito)**  
 ✅ **Protección de rutas con AuthGuard**  
-✅ **Consumo de API privada protegida con JWT**  
+✅ **Consumo de API GATEWAY privada protegida con JWT**  
+✅ **Backend Serveless con Lambda y Dynamo**  
 ✅ **Interceptor HTTP para inyección automática del `idToken` en las peticiones al backend**  
 
 ---
