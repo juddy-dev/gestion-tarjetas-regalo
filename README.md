@@ -1,4 +1,4 @@
-# 🚀 Angular 19 + AWS (Amplify + Api Gateway + Lambda)
+# 🚀 Angular 19 + AWS (Amplify + Api Gateway + Lambda + Dynamo)
 
 →→→ [INGRESA AQUÍ PARA TESTEAR](https://juddy-dev.github.io/gestion-tarjetas-regalo/#/)
  - Correo: test@juddy.dev
